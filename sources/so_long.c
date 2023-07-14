@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/14 19:16:41 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:36:05 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 
 int main()
 {
-	printf("a comecar o so long yeahh\n");
-	//open("texto.ber", "r");
+	int	fd;
+	char *line;
+
+	fd = open("texto.ber", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
 }

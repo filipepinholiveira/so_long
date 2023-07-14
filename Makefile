@@ -1,6 +1,6 @@
 
 
-MAND = sources/so_long.c
+MAND = sources/so_long.c sources/GET_NEXT_LINE/get_next_line.c sources/GET_NEXT_LINE/get_next_line_utils.c
 CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = so_long
