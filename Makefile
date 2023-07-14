@@ -1,4 +1,6 @@
-MAND = so_long.c 
+
+
+MAND = sources/so_long.c
 CFLAGS = -Wall -Wextra -Werror -g
 
 NAME = so_long
