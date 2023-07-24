@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 17:22:57 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:51:55 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,23 @@ void    init(t_root *board)
 int main(int ac, char **av)
 {
     int fd;
-    t_root root;
-    init(&root);
+    t_root board;
+    init(&board);
     
     if (ac == 1)
         return (1);
     fd = open(av[1], O_RDONLY);
-    root.line = get_next_line(fd);
-    root.map_size = -1;
-    while (root.line)
+    board.line = get_next_line(fd);
+    board.map_size = -1;
+    while (board.line)
     {
         {
-            root.map_size++;
-            root.line = get_next_line(fd);
+            board.map_size++;
+            board.line = get_next_line(fd);
         }
     }
     close (fd);
     
-    t_root board;
-    
-    init(&board);
-    board.map_size = root.map_size;
     fd = open(av[1], O_RDONLY);
     board.line = get_next_line(fd);
     board.line_size = ft_line_size(board.line);
@@ -73,6 +69,10 @@ int main(int ac, char **av)
     }
     write(1, "Texto valido\n", 12);
     write(1, "\n", 1);
+    close (fd);
+
+    // criar array bidimensional abrindo de novo o ficheiro, fazendo gnl e malloc de cada linha
+    
     free(board.line);
 
     void	*mlx;

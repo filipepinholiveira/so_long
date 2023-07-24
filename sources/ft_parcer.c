@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 16:42:00 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:44:48 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 // verificar se linhas tem todas o mesmo comprimento - feito
 // verificar se 1a e ultima sao feitas apenas de paredes '1' - feito
 // verificar se paredes verticais sao feitas apenas de parede '1' - feito
-// verificar se tem apenas um player 'P' - a fazer
-// verificar se tem apenas uma saida 'E' - a fazer
+// verificar se tem apenas um player 'P' - feito
+// verificar se tem apenas uma saida 'E' - feito
+// verificar se tem caracteres diferentes de '0' '1' 'P' 'E' - a fazer
 
 int ft_parcer(t_root *board)
 {
