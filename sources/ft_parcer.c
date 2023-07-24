@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 12:38:57 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:42:00 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,51 +19,45 @@
 // verificar se tem apenas um player 'P' - a fazer
 // verificar se tem apenas uma saida 'E' - a fazer
 
-int ft_parcer(char *line, size_t size, int count, int new_count, int player, int exit)
+int ft_parcer(t_root *board)
 {
-    if (ft_line_size_cmp(line, size) == 1)
+    if (ft_line_size_cmp(board->line, board->line_size) == 1)
     {
         write(1, "Erro:\nLinhas com tamanho diferente!\n", 37);
         return (1);
     }
-    if (ft_check_walls(line) == 1)
+    if (ft_check_walls(board->line) == 1)
     {
         write (1, "Erro:\nParede vertical errada!\n", 29);
         return (1);
     }
-    if (new_count == 0 || new_count == count)
+    if (board->new_count == 0 || board->new_count == board->map_size)
     {
-        if (ft_check_top_bottom_lines(line) == 1)
+        if (ft_check_top_bottom_lines(board->line) == 1)
         {
             write(1, "Erro:\nParede horizontal errada!\n", 31);
             return (1);
         }
     }
-    if (new_count <= count)
+    if (board->new_count <= board->map_size)
     {   
-        int player_count;
-        int exit_count;
-
-        player_count += player;
-        exit_count += exit;
-        player = ft_search_player_button(line);
-        exit = ft_search_exit_button(line);
-        if (new_count == count)
+    
+        board->player += ft_search_player_button(board->line);
+        board->exit += ft_search_exit_button(board->line);
+        if (board->new_count == board->map_size)
         {
-            if (player_count != 1)
+            if (board->player != 1)
             {
                 write(1, "Erro:\nNumero de jogadores inválido!\n", 36);
                 return (1);
             }
-            if (exit_count != 1)
+            if (board->exit != 1)
             {
                 write(1, "Erro:\nNumero de saidas inválido!\n", 33);
                 return (1);
             }
         }
     }
-    printf("Valor de P:%d\n", player);
-    printf("Valor de E:%d\n", exit);
     return (0);
 }
 

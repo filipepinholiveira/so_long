@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 11:32:36 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:08:13 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,23 @@
 #include "../mlx_linux/mlx_int.h"
 #include "../mlx_linux/mlx.h"
 
+typedef struct s_root
+{
+	char *line;
+	size_t size;
+	int map_size;
+	int new_count;
+	int line_size;
+	int player;
+	int exit;
+	int begin_x;
+	int begin_y;
+		
+} t_root;
+
 // sources - parcer.c
 
-int ft_parcer(char *line, size_t size, int count, int new_count, int player, int exit);
+int ft_parcer(t_root *board);
 
 
 // sources - parcer_utils.c
@@ -36,4 +50,5 @@ int ft_check_top_bottom_lines(char *lines);
 // sources - parcer_utils2.c
 int    ft_search_player_button(char *line);
 int    ft_search_exit_button(char *line);
+
 #endif

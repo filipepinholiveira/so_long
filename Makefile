@@ -16,13 +16,13 @@ MINILIBX = ./mlx_linux/libmlx.a
 
 OBJ_MAND = $(MAND:.c=.o)
 
-all: $(NAME) $(MINILIBX)
+all: $(NAME)
 
-$(MINILIBX):
-	make -C mlx_linux
+MINILIBX:
+	$(MAKE) -C mlx_linux
 
-$(NAME): $(OBJ_MAND)	
-	cc -g -C $(CFLAGS) $(OBJ_MAND) -o $(NAME)
+$(NAME): $(OBJ_MAND) MINILIBX
+	cc $(OBJ_MAND) -L./mlx_linux $(CFLAGS) -lmlx -lXext -lX11 -lm -lbsd -o $(NAME)
 
 clean:
 	rm -f $(OBJ_MAND) 
