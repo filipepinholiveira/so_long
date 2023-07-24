@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcer_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:18:41 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 17:08:18 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:49:48 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// void	fill(char **tab, t_root size, t_root cur, char to_fill)
-// {
-// 	tab[cur.y][cur.x] = 'F';
-// 	fill(tab, size, (t_root){cur.x - 1, cur.y}, to_fill);
-// 	fill(tab, size, (t_root){cur.x + 1, cur.y}, to_fill);
-// 	fill(tab, size, (t_root){cur.x, cur.y - 1}, to_fill);
-// 	fill(tab, size, (t_root){cur.x, cur.y + 1}, to_fill);
-// }
+int ft_verify_board(char *line)
+{
+    int i;
 
-// void	flood_fill(char **tab, t_root size, t_root begin)
-// {
-// 	fill(tab, size, begin, tab[begin.y][begin.x]);
-// }
+    i = 0;
+    while (line && line[i] != '\0' && line[i] != '\n')
+    {
+        if (line[i] != '1' && line[i] != '0' && line[i] != 'C' && line[i] != 'P' && line[i] != 'E')
+            return (1);
+        i++;
+    }
+    return (0);
+}
 
-int    ft_search_player_button(char *line)
+int ft_search_player_button(char *line)
 {
     int i;
     int count_P;
@@ -44,7 +44,7 @@ int    ft_search_player_button(char *line)
     return (count_P);
 }
 
-int    ft_search_exit_button(char *line)
+int ft_search_exit_button(char *line)
 {
     int i;
     int count_E;

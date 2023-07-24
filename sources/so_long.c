@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 18:51:55 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:09:08 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void    init(t_root *board)
     board->line_size = 0;
     board->player = 0;
     board->exit = 0;
-    board->begin_y = 0;
-    board->begin_x = 0;
+    board->begin_y = 2;
+    board->begin_x = 6;
 }
 
 int main(int ac, char **av)
@@ -72,13 +72,49 @@ int main(int ac, char **av)
     close (fd);
 
     // criar array bidimensional abrindo de novo o ficheiro, fazendo gnl e malloc de cada linha
+    char ** board_print;
+    char ** board_test;
+
+    board_print = malloc(sizeof(char *) * (board.map_size));
+    board_test = malloc(sizeof(char *) * (board.map_size));
+
+    fd = open(av[1], O_RDONLY);
+    board.line = get_next_line(fd);
+
+    int i;
+
+    i = 0;
+    while (i <= board.map_size)
+    {
+        board_print[i] = board.line;
+        board_test[i] = ft_strdup(board_print[i]);
+        board.line = get_next_line(fd);
+        i++;
+    }
+    int j = 0;
+    // while (j <= board.map_size)
+    // {
+    //     printf("Board Print: %s\n", board_print[j]);
+    //     printf("Board Teste: %s\n", board_test[j]);
+    //     j++;
+    // }
+
+    printf("Tamanho do mapa: %d\n", board.map_size);
+    printf("Tamanho da linha: %d\n", board.line_size);
     
+    flood_fill(board_test, board);
+    while (j <= board.map_size)
+    {
+        printf("Board Teste: %s\n", board_test[j]);
+        j++;
+    }
+
     free(board.line);
 
-    void	*mlx;
-	void	*mlx_win;
+    // void	*mlx;
+	// void	*mlx_win;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
+	// mlx = mlx_init();
+	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	// mlx_loop(mlx);
 }
