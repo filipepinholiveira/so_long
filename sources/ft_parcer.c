@@ -6,20 +6,48 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/17 19:25:34 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:57:48 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// vou tentar criar parcer com todas as verificaçoes
+// verificar se linhas tem todas o mesmo comprimento - feito
+// verificar se 1a e ultima sao feitas apenas de paredes '1' - feito
+// verificar se paredes verticais sao feitas apenas de parede '1' - feito
+// verificar se tem apenas um player 'P' - a fazer
+// verificar se tem apenas uma saida 'E' - a fazer
 
-int ft_parcer(char *line, size_t size)
+int ft_parcer(char *line, size_t size, int count, int new_count, int player, int exit)
 {
-    if (line && ft_line_size(line) != size)
-    {	
-        printf("linhas com tamanho diferente\n");
+    if (ft_line_size_cmp(line, size) == 1)
+    {
+        write(1, "Erro:\nLinhas com tamanho diferente!\n", 37);
         return (1);
     }
+    if (ft_check_walls(line) == 1)
+    {
+        write (1, "Erro:\nParede vertical errada!\n", 29);
+        return (1);
+    }
+    if (new_count == 0 || new_count == count)
+    {
+        if (ft_check_top_bottom_lines(line) == 1)
+        {
+            write(1, "Erro:\nParede horizontal errada!\n", 31);
+            return (1);
+        }
+    }
+    if (new_count <= count)
+    {
+        // (void) player;
+        // (void) exit;
+        player += ft_search_player_button(line);
+        exit += ft_search_exit_button(line);
+    }
+    printf("Valor de P:%d\n", player);
+    printf("Valor de E:%d\n", exit);
     return (0);
 }
 
