@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:33:43 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 16:21:20 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:19:55 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	fill(char **tab, t_root board, char to_fill)
-{
-	tab[board.begin_y][board.begin_x] = 'F';
-    (void) to_fill;
-	// fill(tab, (t_root){board.begin_x - 1, board.begin_y}, to_fill);
-	// fill(tab, (t_root){board.begin_x + 1, board.begin_y}, to_fill);
-	// fill(tab, (t_root){board.begin_x, board.begin_y - 1}, to_fill);
-	// fill(tab, (t_root){board.begin_x, board.begin_y + 1}, to_fill);
-}
 
-void	flood_fill(char **tab, t_root board)
+void	flood_fill(char **tab, t_point begin, t_point size)
 {
-	fill(tab, board, 'F');
+	if (begin.x < 0 || begin.y < 0 || begin.x > size.x || begin.y > size.y)
+		return ;
+	if (tab[begin.y][begin.x] == '1')
+        return;
+	tab[begin.y][begin.x] = '1';
+	flood_fill(tab, (t_point){begin.y - 1, begin.x}, size);
+	flood_fill(tab, (t_point){begin.y + 1, begin.x}, size);
+	flood_fill(tab, (t_point){begin.y, begin.x - 1}, size);
+	flood_fill(tab, (t_point){begin.y, begin.x + 1}, size);
 }

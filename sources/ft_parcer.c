@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 14:05:40 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:43:24 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int ft_parcer(t_root *board)
     }
     if (board->new_count <= board->map_size)
     {   
-    
         board->player += ft_search_player_button(board->line);
         board->exit += ft_search_exit_button(board->line);
         if (board->new_count == board->map_size)

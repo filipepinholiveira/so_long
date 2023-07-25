@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/24 16:07:00 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:45:25 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_root
 		
 } t_root;
 
+typedef struct s_point
+{
+	int y;
+	int x;
+	
+} t_point;
+
 // sources - parcer.c
 
 int ft_parcer(t_root *board);
@@ -54,7 +61,7 @@ int ft_verify_board(char *line);
 
 // sources - flood_fill.c
 
-void	flood_fill(char **tab, t_root board);
+void	flood_fill(char **tab, t_point begin, t_point size);
 
 // sources - ft_strdup.c
 
