@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 13:46:05 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:15:25 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct s_point
 	
 } t_point;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 // sources - parcer.c
 
 int ft_parser(t_root *board);
@@ -70,5 +78,9 @@ void	flood_fill(char **tab, t_point begin, t_point size);
 // sources - ft_strdup.c
 
 char	*ft_strdup(char *s);
+
+// sources - mlx_lib_utils.c
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 13:59:38 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:53:10 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int main(int ac, char **av)
         write(1, "Erro:\nFlood fill!\n", 19);
         return (1);
     }
-    write(1, "Texto valido:\n", 13);
+    write(1, "Texto valido\n", 12);
     write(1, "\n", 1);
     // while (j <= board.map_size)
     // {
@@ -129,11 +129,24 @@ int main(int ac, char **av)
     // }
     free(board.line);
 
-    void	*mlx;
-	void	*mlx_win;
+    void	*mlx_ptr;
+    void	*win_ptr;
 
-	mlx = mlx_init();
-    (void) mlx_win;
-	mlx_win = mlx_new_window(mlx, 720, 480, "Hello  fucking world!");
-	mlx_loop(mlx);
+    mlx_ptr = mlx_init();
+    if (mlx_ptr == NULL)
+    {
+        write(1, "Error:\nMLX Error\n", 15);
+        return (1);
+    }
+    win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "My first window!");
+    if (win_ptr == NULL)
+    {
+        free (win_ptr);
+        write(1, "Error:\nWIN PTR Error\n", 19);
+        return (1);
+    }
+    //mlx_loop(mlx_ptr);
+    mlx_destroy_window(mlx_ptr, win_ptr);
+    mlx_destroy_display(mlx_ptr);
+    free(mlx_ptr);
 }
