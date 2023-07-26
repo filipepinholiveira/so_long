@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 15:53:10 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:35:17 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,24 +129,27 @@ int main(int ac, char **av)
     // }
     free(board.line);
 
-    void	*mlx_ptr;
-    void	*win_ptr;
+    t_data	data;
 
-    mlx_ptr = mlx_init();
-    if (mlx_ptr == NULL)
+    data.mlx_ptr = mlx_init();
+    if (data.mlx_ptr == NULL)
+        return (1);
+    data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 300, "my window");
+    if (data.win_ptr == NULL)
     {
-        write(1, "Error:\nMLX Error\n", 15);
+        free(data.win_ptr);
         return (1);
     }
-    win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "My first window!");
-    if (win_ptr == NULL)
-    {
-        free (win_ptr);
-        write(1, "Error:\nWIN PTR Error\n", 19);
-        return (1);
-    }
-    //mlx_loop(mlx_ptr);
-    mlx_destroy_window(mlx_ptr, win_ptr);
-    mlx_destroy_display(mlx_ptr);
-    free(mlx_ptr);
+
+    /* Setup hooks */
+    data.img.mlx_img = mlx_new_image(data.mlx_ptr, 600, 300);
+    data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
+    mlx_loop_hook(data.mlx_ptr, &render, &data);
+    mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+
+    mlx_loop(data.mlx_ptr);
+
+    /* we will exit the loop if there's no window left, and execute this code */
+    mlx_destroy_display(data.mlx_ptr);
+    free(data.mlx_ptr);
 }

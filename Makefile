@@ -7,6 +7,7 @@ sources/ft_parser_utils2.c \
 sources/ft_strdup.c \
 sources/flood_fill.c \
 sources/mlx_lib_utils.c \
+sources/render_utils.c \
 sources/GET_NEXT_LINE/get_next_line.c \
 sources/GET_NEXT_LINE/get_next_line_utils.c \
 

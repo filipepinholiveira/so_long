@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 15:15:25 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 22:33:57 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,30 @@ typedef struct s_point
 	
 } t_point;
 
-typedef struct	s_data {
-	void	*img;
+typedef struct s_my_img
+{
+	void	*mlx_img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp; /* bits per pixel */
+	int		line_len;
 	int		endian;
-}				t_data;
+}	t_my_img;
+
+typedef struct s_data
+{
+    void	*mlx_ptr;
+    void	*win_ptr;
+	t_my_img	img;
+}	t_data;
+
+typedef struct s_rect
+{
+    int	x;
+    int	y;
+    int width;
+    int height;
+    int color;
+}	t_rect;
 
 // sources - parcer.c
 
@@ -81,6 +98,15 @@ char	*ft_strdup(char *s);
 
 // sources - mlx_lib_utils.c
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int	handle_no_event(void *data);
+int	handle_keypress(int keysym, t_data *data);
+int	handle_keyrelease(int keysym, void *data);
+
+// sources - render_utils.c
+
+int	render(t_data *data);
+int render_rect(t_my_img *img, t_rect rect);
+void	render_background(t_my_img *img, int color);
+void	img_pix_put(t_my_img *img, int x, int y, int color);
 
 #endif
