@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/25 18:43:24 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:52:59 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,48 +20,47 @@
 // verificar se tem apenas uma saida 'E' - feito
 // verificar se tem caracteres diferentes de '0' '1' 'P' 'E' - a fazer
 
-int ft_parcer(t_root *board)
+int ft_parser(t_root *board)
 {
     int count;
 
     count = 0;
     if (ft_line_size_cmp(board->line, board->line_size) == 1)
     {
-        write(1, "Erro:\nLinhas com tamanho diferente!\n", 37);
+        write(1, "Error:\nLinhas com tamanho diferente!\n", 37);
         count++;
     }
     if (ft_check_walls(board->line) == 1)
     {
-        write (1, "Erro:\nParede vertical errada!\n", 29);
+        write (1, "Error:\nParede vertical errada!\n", 31);
         count++;
     }
     if (ft_verify_board(board->line) == 1)
     {
-        write(1, "erro:\nCaracter inválido no mapa!\n", 34);
+        write(1, "Error:\nCaracter inválido no mapa!\n", 35);
         count++;
     }
     if (board->new_count == 0 || board->new_count == board->map_size)
     {
         if (ft_check_top_bottom_lines(board->line) == 1)
         {
-            write(1, "Erro:\nParede horizontal errada!\n", 32);
+            write(1, "Error:\nParede horizontal errada!\n", 33);
             count++;
         }
     }
     if (board->new_count <= board->map_size)
     {   
-        board->player += ft_search_player_button(board->line);
-        board->exit += ft_search_exit_button(board->line);
+        ft_search_button(board->line, &board->player, &board->coin, &board->exit);
         if (board->new_count == board->map_size)
         {
             if (board->player != 1)
             {
-                write(1, "Erro:\nNumero de jogadores inválido!\n", 37);
+                write(1, "Error:\nNumero de jogadores inválido!\n", 38);
                 count++;
             }
             if (board->exit != 1)
             {
-                write(1, "Erro:\nNumero de saidas inválido!\n", 33);
+                write(1, "Error:\nNumero de saidas inválido!\n", 34);
                 count++;
             }
         }

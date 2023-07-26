@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/25 18:45:25 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:46:05 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_root
 	int line_size;
 	int player;
 	int exit;
+	int coin;
 	int begin_x;
 	int begin_y;
 		
@@ -40,12 +41,14 @@ typedef struct s_point
 {
 	int y;
 	int x;
+	int *coin;
+	int *exit;
 	
 } t_point;
 
 // sources - parcer.c
 
-int ft_parcer(t_root *board);
+int ft_parser(t_root *board);
 
 
 // sources - parcer_utils.c
@@ -58,6 +61,7 @@ int ft_check_top_bottom_lines(char *lines);
 int    ft_search_player_button(char *line);
 int    ft_search_exit_button(char *line);
 int ft_verify_board(char *line);
+void ft_search_button(char *line, int *player, int *coin, int *exit);
 
 // sources - flood_fill.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcer_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:18:41 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/25 17:36:15 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:53:45 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,31 @@ int ft_verify_board(char *line)
     return (0);
 }
 
-int ft_search_player_button(char *line)
+void ft_search_button(char *line, int *player, int *coin, int *exit)
 {
     int i;
-    int count_P;
 
     i = 0;
-    count_P = 0;
+
+    int player_count;
+    int exit_count;
+    int coin_count;
+
+    player_count = *player;
+    coin_count = *coin;
+    exit_count = *exit;
 
     while (line[i])
     {
         if (line[i] == 'P')
-            count_P++;
-        i++;
-    }
-    //printf("Valor P na funçao: %d\n", count_P);
-    return (count_P);
-}
-
-int ft_search_exit_button(char *line)
-{
-    int i;
-    int count_E;
-
-    i = 0;
-    count_E = 0;
-
-    while (line[i])
-    {
+            player_count++;
         if (line[i] == 'E')
-            count_E++;
+            exit_count++;
+        if (line[i] == 'C')    
+            coin_count++;
         i++;
     }
-    //printf("Valor E na funçao: %d\n", count_E);
-    return (count_E);
+    *player = player_count;
+    *exit = exit_count;
+    *coin = coin_count;
 }

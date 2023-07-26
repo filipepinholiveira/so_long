@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/25 18:36:21 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:59:38 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// para ja imprimo o texto e verifico se todas as linhas sao do mesmo tamanho
-// e se começam e termina com '1'
-
-
-
 void    init(t_root *board)
 {
-
     board->line = malloc (sizeof(char));
     board->size = 0;
     board->map_size = 0;
@@ -27,6 +21,7 @@ void    init(t_root *board)
     board->line_size = 0;
     board->player = 0;
     board->exit = 0;
+    board->coin = 0;
     board->begin_y = 0;
     board->begin_x = 0;
 }
@@ -58,7 +53,7 @@ int main(int ac, char **av)
     while (board.line)
     {
         {
-            if (ft_parcer(&board) == 1)
+            if (ft_parser(&board) == 1)
             {
                 write(1, "\n", 1);
                 return (1);
@@ -67,11 +62,7 @@ int main(int ac, char **av)
             board.new_count++;
         }
     }
-    write(1, "Texto valido\n", 12);
-    write(1, "\n", 1);
     close (fd);
-
-    
     char ** board_print;
     char ** board_test;
 
@@ -85,7 +76,6 @@ int main(int ac, char **av)
     int k;
     
     i = 0;
-    printf("board.map_size = %d\n", board.map_size);
     while (i <= board.map_size)
     {   
         k = 0;
@@ -104,31 +94,39 @@ int main(int ac, char **av)
         i++;
     }
     
-    printf("valor begin y: %d\n", board.begin_y);
-    printf("valor begin x: %d\n", board.begin_x);
-
-    
-    int j = 0;
+    //int j = 0;
     t_point begin;
     t_point size;
 
     begin.x = board.begin_x;
     begin.y = board.begin_y;
+    
+    begin.coin = malloc (sizeof(int));
+    *begin.coin = 0;
+    begin.exit = malloc (sizeof(int));
+    *begin.exit = 0;
     size.x = board.line_size;
     size.y = board.map_size;
-    
-    // verificar se caminho encontra saida, e se tem numero de moedas definidas no caminho
-    
     flood_fill(board_test, begin, size);
-    while (j <= board.map_size)
+    if (*begin.coin != board.coin || *begin.exit != board.exit)
     {
-        printf("Board Teste: %s\n", board_test[j]);
-        j++;
+        write(1, "Erro:\nFlood fill!\n", 19);
+        return (1);
     }
-    
-    
-
-    
+    write(1, "Texto valido:\n", 13);
+    write(1, "\n", 1);
+    // while (j <= board.map_size)
+    // {
+    //     printf("Board Print: %s\n", board_print[j]);
+    //     j++;
+    // }
+    // puts("-----------------------------------");
+    // j = 0;
+    // while (j <= board.map_size)
+    // {
+    //     printf("Board Teste: %s\n", board_test[j]);
+    //     j++;
+    // }
     free(board.line);
 
     void	*mlx;
@@ -136,6 +134,6 @@ int main(int ac, char **av)
 
 	mlx = mlx_init();
     (void) mlx_win;
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 720, 480, "Hello  fucking world!");
 	mlx_loop(mlx);
 }
