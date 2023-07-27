@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:52:02 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/27 15:51:07 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:55:50 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int	render(t_root *game)
         {
             if (game->map.map[i][k] == '1')
                 mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->wall.mlx_img, k * 64, i * 64);
+            if (game->map.map[i][k] == 'P')
+                mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->player.mlx_img, k * 64, i * 64);
+            if (game->map.map[i][k] == 'C')
+                mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->coin.mlx_img, k * 64, i * 64);
         }
     }
     return (0);

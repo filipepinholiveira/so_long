@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/27 15:46:07 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:55:17 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,13 +125,14 @@ int main(int ac, char **av)
     }
 
     /* Setup hooks */
-    game.wall.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/male.xpm", &game.wall.eight, &game.wall.width);
+    game.wall.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/wall_brick.xpm", &game.wall.eight, &game.wall.width);
+    game.player.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/male.xpm", &game.player.eight, &game.player.width);
+    game.coin.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/coin.xpm", &game.coin.eight, &game.coin.width);
     mlx_loop_hook(game.data.mlx_ptr, &render, &game);
     mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &game);
 
     mlx_loop(game.data.mlx_ptr);
 
     /* we will exit the loop if there's no window left, and execute this code */
-    mlx_destroy_display(game.data.mlx_ptr);
     free(game.data.mlx_ptr);
 }
