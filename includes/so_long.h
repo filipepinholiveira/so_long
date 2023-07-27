@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 22:33:57 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:43:46 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "../mlx_linux/mlx_int.h"
 #include "../mlx_linux/mlx.h"
 
-typedef struct s_root
+typedef struct s_map
 {
 	char *line;
 	size_t size;
@@ -34,8 +34,10 @@ typedef struct s_root
 	int coin;
 	int begin_x;
 	int begin_y;
+	char **map;
+	char **map_teste;
 		
-} t_root;
+} t_map;
 
 typedef struct s_point
 {
@@ -53,27 +55,34 @@ typedef struct s_my_img
 	int		bpp; /* bits per pixel */
 	int		line_len;
 	int		endian;
+	int 	begin_x;
+	int 	begin_y;
+	int		width;
+	int		eight;
 }	t_my_img;
 
 typedef struct s_data
 {
     void	*mlx_ptr;
     void	*win_ptr;
-	t_my_img	img;
 }	t_data;
 
-typedef struct s_rect
+typedef struct s_root
 {
-    int	x;
-    int	y;
-    int width;
-    int height;
-    int color;
-}	t_rect;
+	t_map map;
+	t_data data;
+	t_point coin_exit;
+	t_my_img wall;
+	t_my_img player;
+	t_my_img exit;
+	t_my_img coin;
+	t_my_img enemy;
+}	t_root;
+
 
 // sources - parcer.c
 
-int ft_parser(t_root *board);
+int ft_parser(t_map *board);
 
 
 // sources - parcer_utils.c
@@ -99,13 +108,12 @@ char	*ft_strdup(char *s);
 // sources - mlx_lib_utils.c
 
 int	handle_no_event(void *data);
-int	handle_keypress(int keysym, t_data *data);
+int	handle_keypress(int keysym, t_root *game);
 int	handle_keyrelease(int keysym, void *data);
 
 // sources - render_utils.c
 
-int	render(t_data *data);
-int render_rect(t_my_img *img, t_rect rect);
+int	render(t_root *game);
 void	render_background(t_my_img *img, int color);
 void	img_pix_put(t_my_img *img, int x, int y, int color);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parcer.c                                        :+:      :+:    :+:   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 13:52:59 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:40:01 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // verificar se tem apenas uma saida 'E' - feito
 // verificar se tem caracteres diferentes de '0' '1' 'P' 'E' - a fazer
 
-int ft_parser(t_root *board)
+int ft_parser(t_map *board)
 {
     int count;
 
