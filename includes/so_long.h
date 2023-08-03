@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/27 15:43:46 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:09:41 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_root
 	t_my_img wall;
 	t_my_img player;
 	t_my_img exit;
+	t_my_img relva;
 	t_my_img coin;
 	t_my_img enemy;
 }	t_root;
@@ -107,14 +108,11 @@ char	*ft_strdup(char *s);
 
 // sources - mlx_lib_utils.c
 
-int	handle_no_event(void *data);
 int	handle_keypress(int keysym, t_root *game);
-int	handle_keyrelease(int keysym, void *data);
 
 // sources - render_utils.c
 
+int	key_hook(int keysym, t_root *game);
 int	render(t_root *game);
-void	render_background(t_my_img *img, int color);
-void	img_pix_put(t_my_img *img, int x, int y, int color);
 
 #endif

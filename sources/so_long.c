@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/27 16:55:17 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:09:45 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int main(int ac, char **av)
         i++;
     }
     
-    //int j = 0;
     t_point begin;
     t_point size;
 
@@ -124,10 +123,14 @@ int main(int ac, char **av)
         return (1);
     }
 
-    /* Setup hooks */
+    /* Images criation */
     game.wall.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/wall_brick.xpm", &game.wall.eight, &game.wall.width);
     game.player.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/male.xpm", &game.player.eight, &game.player.width);
     game.coin.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/coin.xpm", &game.coin.eight, &game.coin.width);
+    game.exit.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/door_closed.xpm", &game.exit.eight, &game.exit.width);
+    game.relva.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/relva.xpm", &game.relva.eight, &game.relva.width);
+    
+    // hooks and events
     mlx_loop_hook(game.data.mlx_ptr, &render, &game);
     mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &game);
 
