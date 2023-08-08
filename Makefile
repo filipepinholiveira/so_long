@@ -12,7 +12,7 @@ sources/GET_NEXT_LINE/get_next_line.c \
 sources/GET_NEXT_LINE/get_next_line_utils.c \
 
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 NAME = so_long
 
