@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/08 19:28:09 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:37:52 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int main(int ac, char **av)
         return (1);
     len = ft_strlen(av[1]);
     if (av[1][len-1] != 'r' || av[1][len-2] != 'e' || av[1][len-3] != 'b' || av[1][len-4] != '.')
+    {
+        write(1, "Error\ninvalid file!\n", 20);
         return (1);
+    }
     fd = open(av[1], O_RDONLY);
     game.map.line = get_next_line(fd);
     if (game.map.line == NULL)
