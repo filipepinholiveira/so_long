@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parcer_utils2.c                                 :+:      :+:    :+:   */
+/*   ft_parser_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:18:41 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/07/26 13:53:45 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:18:52 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_verify_board(char *line)
     i = 0;
     while (line && line[i] != '\0' && line[i] != '\n')
     {
-        if (line[i] != '1' && line[i] != '0' && line[i] != 'C' && line[i] != 'P' && line[i] != 'E')
+        if (line[i] != '1' && line[i] != '0' && line[i] != 'C' && line[i] != 'P' && line[i] != 69)
             return (1);
         i++;
     }

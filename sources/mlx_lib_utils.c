@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_lib_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:13:27 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/03 13:09:36 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:19:24 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	handle_keypress(int keysym, t_root *game)
 {   
+    if (game->map.coin == 0)
+        {
+            mlx_destroy_image(game->data.mlx_ptr, game->exit.mlx_img);
+            game->exit.mlx_img = mlx_xpm_file_to_image(game->data.mlx_ptr, "assets/porta_aberta.xpm", &game->exit.eight, &game->exit.width);
+        }
     if (keysym == XK_Down)
     {   
         if (game->map.map[game->player.begin_y + 1][game->player.begin_x] == 'C')
@@ -90,14 +95,10 @@ int	handle_keypress(int keysym, t_root *game)
             game->map.map[game->player.begin_y][game->player.begin_x] = 'P';
         }
     }
-    if (game->map.coin == 0)
-        game->exit.mlx_img = mlx_xpm_file_to_image(game->data.mlx_ptr, "assets/porta_aberta.xpm", &game->exit.eight, &game->exit.width);
     if (keysym == XK_Escape)
     {
-        mlx_destroy_image(game->data.mlx_ptr, game->wall.mlx_img);
-        mlx_destroy_window(game->data.mlx_ptr, game->data.win_ptr);
-        mlx_destroy_display(game->data.mlx_ptr);
-        game->data.win_ptr = NULL;
+        free_all(game);
+        //game->data.win_ptr = NULL;
     }
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/03 13:09:41 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:41:00 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_map
 	int coin;
 	int begin_x;
 	int begin_y;
+	int count;
 	char **map;
 	char **map_teste;
 		
@@ -114,5 +115,9 @@ int	handle_keypress(int keysym, t_root *game);
 
 int	key_hook(int keysym, t_root *game);
 int	render(t_root *game);
+
+// sources - free_map.c
+
+void	free_all(t_root *game);
 
 #endif
