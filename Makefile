@@ -10,6 +10,7 @@ MAND = sources/so_long.c \
 	sources/render_utils.c \
 	sources/free_map.c \
 	sources/handle_keys.c \
+	sources/main_utils.c \
 	sources/GET_NEXT_LINE/get_next_line.c \
 	sources/GET_NEXT_LINE/get_next_line_utils.c \
 	sources/PRINTF/ft_printf.c \

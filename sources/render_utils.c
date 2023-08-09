@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:52:02 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/09 15:51:19 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:44:12 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,41 @@
 
 int	render(t_root *game)
 {
-	for (int i = 0; i <= game->map.map_size; i++)
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (i <= game->map.map_size)
 	{
-		for (int k = 0; k < game->map.line_size; k++)
+		while (k < game->map.line_size)
 		{
 			if (game->map.map[i][k] == '1')
-				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->wall.mlx_img, k * 64, i * 64);
+				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, 
+					game->wall.mlx_img, k * 64, i * 64);
 			if (game->map.map[i][k] == '0')
-				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->relva.mlx_img, k * 64, i * 64);
+				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, 
+					game->relva.mlx_img, k * 64, i * 64);
 			if (game->map.map[i][k] == 'P')
 			{
-				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->player.mlx_img, k * 64, i * 64);
-				game->player.begin = (t_point){k, i};
-				game->player.begin_x = k;
-				game->player.begin_y = i;
+				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, 
+					game->player.mlx_img, k * 64, i * 64);
+				game->player.begin = (t_point){i, k, NULL, NULL};
 			}
 			if (game->map.map[i][k] == 'C')
-				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->coin.mlx_img, k * 64, i * 64);
+				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, 
+					game->coin.mlx_img, k * 64, i * 64);
 			if (game->map.map[i][k] == 'E')
 			{
-				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, game->exit.mlx_img, k * 64, i * 64);
+				mlx_put_image_to_window(game->data.mlx_ptr, game->data.win_ptr, 
+					game->exit.mlx_img, k * 64, i * 64);
 				game->exit.begin_x = k;
 				game->exit.begin_y = i;
 			}
+			k++;
 		}
+		k = 0;
+		i++;
 	}
 	return (0);
 }
