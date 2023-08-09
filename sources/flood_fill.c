@@ -6,19 +6,18 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:33:43 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/08 14:48:50 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:25:47 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-
 void	flood_fill(char **tab, t_point begin, t_point size)
-{	
+{
 	if (begin.x < 0 || begin.y < 0 || begin.x > size.x || begin.y > size.y)
 		return ;
 	if (tab[begin.y][begin.x] == '1')
-        return;
+		return ;
 	if (tab[begin.y][begin.x] == 'C')
 	{
 		*begin.coin = *begin.coin + 1;
@@ -28,8 +27,12 @@ void	flood_fill(char **tab, t_point begin, t_point size)
 		*begin.exit = *begin.exit + 1;
 	}
 	tab[begin.y][begin.x] = '1';
-	flood_fill(tab, (t_point){begin.y - 1, begin.x, begin.coin, begin.exit}, size);
-	flood_fill(tab, (t_point){begin.y + 1, begin.x, begin.coin, begin.exit}, size);
-	flood_fill(tab, (t_point){begin.y, begin.x - 1, begin.coin, begin.exit}, size);
-	flood_fill(tab, (t_point){begin.y, begin.x + 1, begin.coin, begin.exit}, size);
+	flood_fill(tab, (t_point){begin.y - 1, begin.x, begin.coin, begin.exit}, 
+		size);
+	flood_fill(tab, (t_point){begin.y + 1, begin.x, begin.coin, begin.exit}, 
+		size);
+	flood_fill(tab, (t_point){begin.y, begin.x - 1, begin.coin, begin.exit}, 
+		size);
+	flood_fill(tab, (t_point){begin.y, begin.x + 1, begin.coin, begin.exit},
+		size);
 }

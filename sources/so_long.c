@@ -6,19 +6,11 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/08 19:37:52 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:31:19 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-// erro com mapa com ficheiro vazio:
-
-
-// erro: aceita caracteres invalidos
-
-
-
 
 void    init(t_map *map)
 {
@@ -31,6 +23,7 @@ void    init(t_map *map)
     map->exit = 0;
     map->coin = 0;
     map->count = 0;
+    map->moves = 0;
     map->begin_y = 0;
     map->begin_x = 0;
 }
@@ -68,13 +61,10 @@ int main(int ac, char **av)
         }
     }
     close (fd);
-
     // loop para verificar cada linha com o parser
-    
     fd = open(av[1], O_RDONLY);
     game.map.line = get_next_line(fd);
     game.map.line_size = ft_line_size(game.map.line);
-    
     int f;
 
     f = 0;
@@ -97,15 +87,11 @@ int main(int ac, char **av)
     if (f == 1)
         return(1);
     close (fd);
-        
     // preencher os mapas para flood fill e para janela de jogo
-
     game.map.map = malloc(sizeof(char *) * (game.map.map_size + 1));
     game.map.map_teste = malloc(sizeof(char *) * (game.map.map_size + 1));
-
     fd = open(av[1], O_RDONLY);
     game.map.line = get_next_line(fd);
-
     int i;
     int k;
     
@@ -127,7 +113,6 @@ int main(int ac, char **av)
         game.map.line = get_next_line(fd);
         i++;
     }
-    
     t_point begin;
     t_point size;
 
@@ -159,12 +144,8 @@ int main(int ac, char **av)
         }
         free(game.map.map_teste);
         free(game.map.map);
-        
         return (1);
     }
-    // write(1, "Texto valido\n", 12);
-    // write(1, "\n", 1);
-    
     game.data.mlx_ptr = mlx_init();
     if (game.data.mlx_ptr == NULL)
         return (1);
@@ -182,13 +163,8 @@ int main(int ac, char **av)
     game.coin.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/coin.xpm", &game.coin.eight, &game.coin.width);
     game.exit.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/door_closed.xpm", &game.exit.eight, &game.exit.width);
     game.relva.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr, "assets/relva.xpm", &game.relva.eight, &game.relva.width);
-    
     // hooks and events
     mlx_loop_hook(game.data.mlx_ptr, &render, &game);
     mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &game);
-
     mlx_loop(game.data.mlx_ptr);
-
-    /* we will exit the loop if there's no window left, and execute this code */
-    //free_all(game);
 }

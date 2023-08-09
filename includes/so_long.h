@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/08 18:41:00 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:50:41 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "../sources/GET_NEXT_LINE/get_next_line.h"
+#include "../sources/PRINTF/ft_printf.h"
 #include "../mlx_linux/mlx_int.h"
 #include "../mlx_linux/mlx.h"
 
@@ -35,6 +36,7 @@ typedef struct s_map
 	int begin_x;
 	int begin_y;
 	int count;
+	int moves;
 	char **map;
 	char **map_teste;
 		
@@ -58,6 +60,7 @@ typedef struct s_my_img
 	int		endian;
 	int 	begin_x;
 	int 	begin_y;
+	t_point	begin;
 	int		width;
 	int		eight;
 }	t_my_img;
@@ -110,6 +113,13 @@ char	*ft_strdup(char *s);
 // sources - mlx_lib_utils.c
 
 int	handle_keypress(int keysym, t_root *game);
+
+// sources - handle_keys.c
+
+void	handle_key_down(int *keysym, t_root *game);
+void    handle_key_up(int *keysym, t_root *game);
+void handle_key_left(int *keysym, t_root *game);
+void handle_key_right(int *keysym, t_root *game);
 
 // sources - render_utils.c
 

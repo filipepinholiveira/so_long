@@ -9,8 +9,16 @@ MAND = sources/so_long.c \
 	sources/mlx_lib_utils.c \
 	sources/render_utils.c \
 	sources/free_map.c \
+	sources/handle_keys.c \
 	sources/GET_NEXT_LINE/get_next_line.c \
-	sources/GET_NEXT_LINE/get_next_line_utils.c
+	sources/GET_NEXT_LINE/get_next_line_utils.c \
+	sources/PRINTF/ft_printf.c \
+	sources/PRINTF/ft_putchar.c \
+	sources/PRINTF/ft_putstr.c \
+	sources/PRINTF/ft_putnbr.c \
+	sources/PRINTF/ft_putnbr_u.c \
+	sources/PRINTF/ft_putnbr_hexa.c \
+	sources/PRINTF/ft_putnbr_hexa_ptr.c
 
 
 CFLAGS = -Wall -Wextra -Werror -g3# -fsanitize=address
