@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:35:47 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 14:25:29 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:26:32 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int initialize_game(t_root *game)
 		free(game->data.win_ptr);
 		return (1);
 	}
-	/* Images criation */
 	game->wall.mlx_img = mlx_xpm_file_to_image(game->data.mlx_ptr,
 			"assets/wall_brick.xpm", &game->wall.eight, &game->wall.width);
 	game->player.mlx_img = mlx_xpm_file_to_image(game->data.mlx_ptr,

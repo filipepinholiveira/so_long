@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:05:40 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 16:11:29 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:26:05 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	open_and_parse(int fd, const char *av, t_root *game)
 				f = 1;
 				free (game->map.line);
 				game->map.line = NULL;
-				write(1, "\n", 1);
 			}
 			if (game->map.line)
 				free(game->map.line);
@@ -78,14 +77,15 @@ int	open_and_parse(int fd, const char *av, t_root *game)
 	close (fd);
 	return (0);
 }
+
 int	open_and_create_arrays(int fd, const char *av, t_root *game)
 {
-	game->map.map = malloc(sizeof(char *) * (game->map.map_size + 1));
-	if (!game->map.map)
+	game->map.map = malloc(sizeof(char *) * (game->map.map_size + 1)); // a fazer!!!!!!!!verificar 
+	if (!game->map.map) // para se posso inicializar no init
 		return (1);
-	game->map.map_teste = malloc(sizeof(char *) * (game->map.map_size + 1));
+	game->map.map_teste = malloc(sizeof(char *) * (game->map.map_size + 1)); // para poupar estas
 	if (!game->map.map_teste)
-		return (1);
+		return (1); // linhas ate aqui
 	fd = open(av, O_RDONLY);
 	game->map.line = get_next_line(fd);
 	int		i;
