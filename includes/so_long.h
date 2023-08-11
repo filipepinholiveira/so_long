@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 13:46:38 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:11:02 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_root
 	t_map map;
 	t_data data;
 	t_point coin_exit;
+	t_point	begin;
+	t_point	size;
 	t_my_img wall;
 	t_my_img player;
 	t_my_img exit;
@@ -93,12 +95,13 @@ int ft_parser(t_map *board);
 
 int	open_and_count_lines(int fd, const char *av, t_root *game);
 int	open_and_parse(int fd, const char *av, t_root *game);
-int	validate_file(char *av);
+int	validate_file(int ac, char *av);
 int	open_and_create_arrays(int fd, const char *av, t_root *game);
 
 // sources - main_utils2.c
 
 int initialize_game(t_root *game);
+int flood_fill_validate(t_root *game);
 
 // sources - parcer_utils.c
 size_t	ft_line_size(char *line);
@@ -115,6 +118,7 @@ void ft_search_button(char *line, int *player, int *coin, int *exit);
 // sources - flood_fill.c
 
 void	flood_fill(char **tab, t_point begin, t_point size);
+void	init_flood_fill(t_root *game);
 
 // sources - ft_strdup.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:33:43 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/09 15:25:47 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:05:16 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,16 @@ void	flood_fill(char **tab, t_point begin, t_point size)
 		size);
 	flood_fill(tab, (t_point){begin.y, begin.x + 1, begin.coin, begin.exit},
 		size);
+}
+
+void	init_flood_fill(t_root *game)
+{
+	game->begin.x = game->map.begin_x;
+	game->begin.y = game->map.begin_y;
+	game->size.x = game->map.line_size;
+	game->size.y = game->map.map_size;
+	game->begin.coin = malloc (sizeof(int));
+	*game->begin.coin = 0;
+	game->begin.exit = malloc (sizeof(int));
+	*game->begin.exit = 0;
 }

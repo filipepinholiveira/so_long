@@ -6,11 +6,36 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:35:47 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 13:44:41 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:25:29 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int flood_fill_validate(t_root *game)
+{
+    if (*game->begin.coin != game->map.coin || *game->begin.exit != game->map.exit)
+	{
+		int	p;
+		
+		p = 0;
+		write(1, "Error\nFlood fill!\n", 19);
+		free (game->begin.coin);
+		free (game->begin.exit);
+		while (p <= game->map.map_size)
+		{
+			if (game->map.map[p])
+				free(game->map.map[p]);
+			if (game->map.map_teste[p])
+				free(game->map.map_teste[p]);
+			p++;
+		}
+		free(game->map.map_teste);
+		free(game->map.map);
+		return (1);
+    }
+    return (0);
+}
 
 int initialize_game(t_root *game)
 {

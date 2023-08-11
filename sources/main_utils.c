@@ -6,16 +6,18 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:05:40 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 13:10:25 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 16:11:29 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	validate_file(char *av)
+int	validate_file(int ac, char *av)
 {
 	int	len;
 
+	if (ac == 1)
+		return (1);
 	len = ft_strlen(av);
 	if (av[len-1] != 'r' || av[len-2] != 'e' || av[len-3] != 'b'
 		|| av[len-4] != '.')
