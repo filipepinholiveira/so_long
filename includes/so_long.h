@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:08 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/09 18:18:44 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:19:06 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ int ft_parser(t_map *board);
 
 // sources - main_utils.c
 
-int	open_and_count_lines(int fd, const char *av, t_root game);
+int	open_and_count_lines(int fd, const char *av, t_root *game);
+int	open_and_parse(int fd, const char *av, t_root *game);
+int	validate_file(char *av);
+int	open_and_create_arrays(int fd, const char *av, t_root *game);
 
 // sources - parcer_utils.c
 size_t	ft_line_size(char *line);
