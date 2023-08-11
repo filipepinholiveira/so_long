@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 13:24:16 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/11 13:53:39 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 		return (1);
+	fd = 0;
 	if (validate_file(av[1]) == 1) // validar ficheiro .ber
 		return (1);
-	fd = 0;
 	if (open_and_count_lines(fd, av[1], &game) == 1) // contar tamanho do texto em linhas
 		return (1);
 	if (open_and_parse(fd, av[1], &game) == 1) // loop para verificar cada linha com o parser
@@ -79,36 +79,13 @@ int	main(int ac, char **av)
 		free(game.map.map);
 		return (1);
 	}
-
-	// game init
-
-	game.data.mlx_ptr = mlx_init();
-	if (game.data.mlx_ptr == NULL)
-		return (1);
-	game.data.win_ptr = mlx_new_window(game.data.mlx_ptr, 
-			game.map.line_size * 64, (game.map.map_size + 1) * 64, "my window");
-	if (game.data.win_ptr == NULL)
-	{
-		free(game.data.win_ptr);
-		return (1);
-	}
 	free (begin.coin);
 	free (begin.exit);
-	/* Images criation */
-	game.wall.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr,
-			"assets/wall_brick.xpm", &game.wall.eight, &game.wall.width);
-	game.player.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr,
-			"assets/male.xpm", &game.player.eight, &game.player.width);
-	game.coin.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr,
-			"assets/coin.xpm", &game.coin.eight, &game.coin.width);
-	game.exit.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr,
-			"assets/door_closed.xpm", &game.exit.eight, &game.exit.width);
-	game.relva.mlx_img = mlx_xpm_file_to_image(game.data.mlx_ptr,
-			"assets/relva.xpm", &game.relva.eight, &game.relva.width);
-	// hooks and events
-	mlx_loop_hook(game.data.mlx_ptr, &render, &game);
+	if (initialize_game(&game) == 1) // game init
+		return (1);
+	mlx_loop_hook(game.data.mlx_ptr, &render, &game); // hooks and events
 	mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask,
-		&handle_keypress, &game);
+		&handle_keypress, &game); // hooks and events
 	mlx_loop(game.data.mlx_ptr);
 }
 
