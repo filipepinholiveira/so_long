@@ -23,7 +23,7 @@ MAND = sources/so_long.c \
 	sources/PRINTF/ft_putnbr_hexa_ptr.c
 
 
-CFLAGS = -Wall -Wextra -Werror -g3# -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 # -fsanitize=address
 
 NAME = so_long
 
@@ -33,10 +33,8 @@ OBJ_MAND = $(MAND:.c=.o)
 
 all: $(NAME)
 
-MINILIBX:
+$(NAME): $(OBJ_MAND)
 	$(MAKE) -C mlx_linux
-
-$(NAME): $(OBJ_MAND) MINILIBX
 	cc $(OBJ_MAND) -L./mlx_linux $(CFLAGS) -lmlx -lXext -lX11 -lm -lbsd -o $(NAME)
 
 clean:

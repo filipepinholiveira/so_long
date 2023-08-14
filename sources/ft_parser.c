@@ -6,7 +6,7 @@
 /*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:57:31 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/09 15:37:27 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:54:18 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ void	error(char *str, int *count)
 	(*count)++;
 	write(1, "Error\n", 6);
 	write(1, str, ft_strlen(str));
+}
+
+static void	validate_buttons(t_map *board)
+{
+	ft_search_button(board->line, &board->player, &board->coin,
+		&board->exit);
+	if (board->new_count == board->map_size)
+	{
+		if (board->player != 1)
+			error("Numero de jogadores inválido!\n", &board->count);
+		if (board->exit != 1)
+			error("Numero de saidas inválido!\n", &board->count);
+		if (board->coin <= 0)
+			error("Numero de moedas inválido!\n", &board->count);
+	}
 }
 
 int	ft_parser(t_map *board)
@@ -37,17 +52,7 @@ int	ft_parser(t_map *board)
 			error("Parede horizontal errada!\n", &board->count);
 	if (board->new_count <= board->map_size)
 	{
-		ft_search_button(board->line, &board->player, &board->coin,
-			&board->exit);
-		if (board->new_count == board->map_size)
-		{
-			if (board->player != 1)
-				error("Numero de jogadores inválido!\n", &board->count);
-			if (board->exit != 1)
-				error("Numero de saidas inválido!\n", &board->count);
-			if (board->coin <= 0)
-				error("Numero de moedas inválido!\n", &board->count);
-		}
+		validate_buttons(board);
 	}
 	if (board->new_count == board->map_size && board->count > 0)
 		return (1);

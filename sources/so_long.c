@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:43:32 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 16:13:09 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/14 15:30:53 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,27 @@ int	main(int ac, char **av)
 {
 	int		fd;
 	t_root	game;
-	init(&game.map);
 
 	fd = 0;
-	if (validate_file(ac, av[1]) == 1) // validar ficheiro .ber
+	init(&game.map);
+	if (validate_file(ac, av[1]) == 1)
 		return (1);
-	if (open_and_count_lines(fd, av[1], &game) == 1) // contar tamanho do texto em linhas
+	if (open_and_count_lines(fd, av[1], &game) == 1)
 		return (1);
-	if (open_and_parse(fd, av[1], &game) == 1) // loop para verificar cada linha com o parser
+	if (open_and_parse(fd, av[1], &game) == 1)
 		return (1);
-	if (open_and_create_arrays (fd, av[1], &game) == 1) // preencher os mapas para flood fill e para janela de jogo
+	if (open_and_create_arrays (fd, av[1], &game) == 1)
 		return (1);
-	init_flood_fill(&game); // prepara os valores das t_point
-	flood_fill(game.map.map_teste, game.begin, game.size); // flood fill
-	if (flood_fill_validate(&game) == 1) // valida o caminho encontrado pelo flood fill
+	init_flood_fill(&game);
+	flood_fill(game.map.map_teste, game.begin, game.size);
+	if (flood_fill_validate(&game) == 1)
 		return (1);
 	free (game.begin.coin);
 	free (game.begin.exit);
-	if (initialize_game(&game) == 1) // game init
+	if (initialize_game(&game) == 1)
 		return (1);
-	mlx_loop_hook(game.data.mlx_ptr, &render, &game); // hooks and events
-	mlx_hook(game.data.win_ptr, KeyPress, KeyPressMask,
-		&handle_keypress, &game); // hooks and events
+	mlx_loop_hook(game.data.mlx_ptr, &render, &game);
+	mlx_hook(game.data.win_ptr, 2, KeyPressMask, &handle_keypress, &game);
+	mlx_hook(game.data.win_ptr, 17, 0, &free_mouse, &game);
 	mlx_loop(game.data.mlx_ptr);
 }
-

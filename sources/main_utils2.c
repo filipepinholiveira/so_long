@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fpinho-d <fpinho-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fpinho-d <fpinho-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 13:35:47 by fpinho-d          #+#    #+#             */
-/*   Updated: 2023/08/11 17:26:32 by fpinho-d         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:59:16 by fpinho-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int flood_fill_validate(t_root *game)
+int	flood_fill_validate(t_root *game)
 {
-    if (*game->begin.coin != game->map.coin || *game->begin.exit != game->map.exit)
+	int	p;
+
+	p = 0;
+	if (*game->begin.coin != game->map.coin || *game->begin.exit
+		!= game->map.exit)
 	{
-		int	p;
-		
-		p = 0;
 		write(1, "Error\nFlood fill!\n", 19);
 		free (game->begin.coin);
 		free (game->begin.exit);
@@ -33,17 +34,18 @@ int flood_fill_validate(t_root *game)
 		free(game->map.map_teste);
 		free(game->map.map);
 		return (1);
-    }
-    return (0);
+	}
+	return (0);
 }
 
-int initialize_game(t_root *game)
+int	initialize_game(t_root *game)
 {
-    game->data.mlx_ptr = mlx_init();
+	game->data.mlx_ptr = mlx_init();
 	if (game->data.mlx_ptr == NULL)
 		return (1);
 	game->data.win_ptr = mlx_new_window(game->data.mlx_ptr, 
-			game->map.line_size * 64, (game->map.map_size + 1) * 64, "my window");
+			game->map.line_size * 64, (game->map.map_size + 1)
+			* 64, "my window");
 	if (game->data.win_ptr == NULL)
 	{
 		free(game->data.win_ptr);
@@ -59,5 +61,5 @@ int initialize_game(t_root *game)
 			"assets/door_closed.xpm", &game->exit.eight, &game->exit.width);
 	game->relva.mlx_img = mlx_xpm_file_to_image(game->data.mlx_ptr,
 			"assets/relva.xpm", &game->relva.eight, &game->relva.width);
-    return (0);
+	return (0);
 }
